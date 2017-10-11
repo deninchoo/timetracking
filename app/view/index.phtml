@@ -1,0 +1,36 @@
+<div class="page-header">
+    <h1>Time tracking list</h1>
+</div>
+<table class="table">
+    <tr>
+        <th>Zaposlenik</th>
+        <th>Broj sati</th>
+        <th>Opis rada</th>
+        <th>Datum</th>
+        <th>Vrsta</th>
+        <th></th>
+        <th></th>
+    </tr>
+<?php
+    foreach($list as $row){
+        echo '<tr>';
+        echo '<td>' . $row['zaposlenik'] . '</td>';
+        echo '<td>' . $row['iznos'] . '</td>';
+        echo '<td>' . $row['opis'] . '</td>';
+        echo '<td>' . $row['datum'] . '</td>';
+        echo '<td>' . $row['vrsta'] . '</td>';
+        echo '<td>
+                <form method="post" action="'. App::config('url') . 'form/edit"  enctype="multipart/form-data">
+                    <input type="hidden" name="edit" value="' . $row['id'] . '" >
+                    <button type="submit" class="btn btn-primary">edit</button>
+                </form></td>';
+        echo '<td>
+                <form method="post" action="'. App::config('url') . 'form/delete"  enctype="multipart/form-data">
+                    <input type="hidden" name="delete" value="' . $row['id'] . '" >
+                    <button type="submit" class="btn btn-danger">delete</button>
+                </form></td>';
+        echo '</tr>';
+    }
+?>
+</table>
+
